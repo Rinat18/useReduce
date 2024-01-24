@@ -44,12 +44,11 @@ const TodoContextProvider = ({ children }) => {
   }
 
   //   ! get id img
-
-  const getOneImg = async (albumId) => {
-    const { data } = await axios(`${API}/photos/${albumId}`);
+  const getOneImg = async (id) => {
+    console.log(id);
+    const { data } = await axios(`${API}/photos?q=&albumId=${id}`);
     dispatch({ type: "GET_ONE_IMG", payload: data });
   };
-
   const values = {
     user: state.user,
     oneUser: state.oneUser,
@@ -58,7 +57,7 @@ const TodoContextProvider = ({ children }) => {
     oneImg: state.oneImg,
     img: state.img,
     getOneImg,
-    getImages
+    getImages,
   };
 
   return <todoContext.Provider value={values}>{children}</todoContext.Provider>;
